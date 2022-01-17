@@ -23,13 +23,11 @@ function Chat() {
           </div>
           <div className="ml-3 self-center"> Laura</div>
         </div>
+
         <div className="overflow-y-auto pt-[84px]">
           {messages &&
             messages.map((msg) => <Message key={msg.id} message={msg} />)}
         </div>
-      </div>
-      <div className="border-2 absolute bottom-0">
-        <SendMessage />
       </div>
     </div>
   );
