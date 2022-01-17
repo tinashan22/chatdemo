@@ -1,10 +1,12 @@
+import { waitForPendingWrites } from "firebase/firestore";
 import React from "react";
+import Styles from "../App.css";
 
 function Message(props) {
   const { text, uid } = props.message;
   return (
     <div>
-      <div>{text}</div>
+      <div className="">{text}</div>
       <div>
         <img
           style={{ height: "36px", width: "36px" }}
