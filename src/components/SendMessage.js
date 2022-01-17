@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import firebase from "firebase/compat/app";
 // import firestore from "firebase/compat/firestore";
 import { db } from "../firebase.js";
@@ -7,6 +7,7 @@ import { db } from "../firebase.js";
 function SendMessage() {
   const [formValue, setFormValue] = useState("");
   const messagesRef = db.collection("messages");
+  const dummy = useRef();
   const sendMessage = async (e) => {
     e.preventDefault();
     await messagesRef.add({
@@ -15,11 +16,13 @@ function SendMessage() {
     });
     console.log(e);
     setFormValue("");
+    dummy.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div>
       <form onSubmit={sendMessage}>
+        <div ref={dummy}></div>
         <input
           value={formValue}
           onChange={(e) => setFormValue(e.target.value)}
