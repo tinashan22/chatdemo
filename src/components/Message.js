@@ -1,10 +1,10 @@
-import { waitForPendingWrites } from "firebase/firestore";
 import React from "react";
-import Styles from "../App.css";
+import { useState, useEffect } from "react";
 
 function Message(props) {
   const { text, uid } = props.message;
-  var color = "green";
+  const [color, setColor] = useState("green");
+
   return (
     <div>
       {/* sender messages */}
@@ -25,9 +25,7 @@ function Message(props) {
           </div>
         </div>
       </div>
-
       {/* receiver messages */}
-
       <div className="ml-4 sm:ml-8 right-0 flex items-center mb-6">
         <div className="mr-4">
           <img
