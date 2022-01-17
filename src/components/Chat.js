@@ -15,12 +15,22 @@ function Chat() {
   const [messages] = useCollectionData(query, { idField: "id" });
 
   return (
-    <div>
+    <div className="relative">
       <div>
-        {messages &&
-          messages.map((msg) => <Message key={msg.id} message={msg} />)}
+        <div className="max-w-3xl  transform translate-x-[-1px] translate-y-[-1px] fixed w-full px-4 sm:px-8 py-4 flex items-center bg-green-200 border-2 border-green-700 mb-8">
+          <div>
+            <img src="/back.svg" />
+          </div>
+          <div className="ml-3 self-center"> Laura</div>
+        </div>
+        <div className="overflow-y-auto pt-[84px]">
+          {messages &&
+            messages.map((msg) => <Message key={msg.id} message={msg} />)}
+        </div>
       </div>
-      <SendMessage />
+      <div className="border-2 absolute bottom-0">
+        <SendMessage />
+      </div>
     </div>
   );
 }
