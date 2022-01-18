@@ -4,7 +4,7 @@ import ChatPage from "./ChatPage";
 import FriendListPage from "./FriendListPage";
 
 function App() {
-  const [chatActive, setChatActive] = useState(true);
+  const [chatActive, setChatActive] = useState(false);
   const [activeFriend, setActiveFriend] = useState("Laura");
 
   return (

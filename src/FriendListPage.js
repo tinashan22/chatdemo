@@ -76,7 +76,7 @@ function FriendListPage({ setActiveFriend }) {
               <img
                 className="rounded-[50%]"
                 style={{ height: "40px", width: "40px" }}
-                src="/Tintin.png"
+                src="/Tintin.jpeg"
                 alt="Tintin"
               />
             </div>
