@@ -13,8 +13,9 @@ function SendMessage() {
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
+      friendName: "Laura",
     });
-    console.log(e);
+    console.log("find Laura", e);
     setFormValue("");
   };
 
@@ -24,23 +25,36 @@ function SendMessage() {
         <form
           className="bg-green-100 shadow-md shadow-green-100 h-[100px] border-none rounded-xl  focus:border-green-600 focus:ring-green-600"
           onSubmit={sendMessage}
+          data-friend="Laura"
         >
-          {/* <div ref={dummy}></div> */}
-          <input
-            type="text"
-            className="bg-green-50 px-4 py-4 h-[100px] border-none rounded-xl w-5/6 focus:border-green-600 focus:rounded-xl focus:ring-green-600 "
-            value={formValue}
-            onChange={(e) => setFormValue(e.target.value)}
-          />
-          <button
-            className="pl-4 py-auto w-1/6 border-none opacity-80"
-            type="submit"
-            onClick={sendMessage}
-          >
-            <div className="flex justify-end pr-8">
-              <img src="/send.svg" />
+          <div className="flex items-center justify-between">
+            {/* input div */}
+            <div className="sm:w-5/6 w-3/4">
+              <input
+                type="text"
+                className="bg-green-50 px-4 py-4 h-[100px] border-none w-full rounded-xl focus:border-green-600 focus:rounded-xl  focus:ring-green-600"
+                value={formValue}
+                data-friend="Laura"
+                onChange={(e) => setFormValue(e.target.value)}
+              />
             </div>
-          </button>
+            {/* image button div */}
+            <div className="hover:opacity-100 opacity-70">
+              <img src="/image.svg" />
+            </div>
+            {/* submit button div */}
+            <div className=" transform translate-y-[3px] mr-6">
+              <button
+                className=" hover:opacity-100 opacity-80"
+                type="submit"
+                onClick={sendMessage}
+              >
+                <div className="flex">
+                  <img src="/send.svg" />
+                </div>
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>

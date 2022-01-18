@@ -26,7 +26,10 @@ function Chat() {
           <div>
             <img src="/back.svg" />
           </div>
-          <div className="ml-3 self-center"> Laura</div>
+          <div className="underline text-zinc-900  decoration-green-500 ml-3 font-sans font-medium text-2xl self-center">
+            {" "}
+            Laura
+          </div>
         </div>
 
         <div className="overflow-y-auto pt-[84px]">
