@@ -1,26 +1,27 @@
 import "./App.css";
+import { useState } from "react";
 import ChatPage from "./ChatPage";
 import FriendListPage from "./FriendListPage";
 
-const css = `
-@media only screen and (min-width: 640px){
-  .window{
-  height: calc(100vh - 112px);
-  }
-};
-
-  .window{
-    height:100vh;
-    }
-;`;
-
 function App() {
-  var friendListName = "Laura";
+  const [chatActive, setChatActive] = useState(true);
+  const [activeFriend, setActiveFriend] = useState("Laura");
+
   return (
     <div>
-      {/* <FriendListPage /> */}
+      {chatActive && (
+        <ChatPage activeFriend={activeFriend} setChatActive={setChatActive} />
+      )}
 
-      <ChatPage friendListName={friendListName} />
+      {!chatActive && (
+        <div
+          onClick={() => {
+            setChatActive(true);
+          }}
+        >
+          <FriendListPage setActiveFriend={setActiveFriend} />
+        </div>
+      )}
     </div>
   );
 }

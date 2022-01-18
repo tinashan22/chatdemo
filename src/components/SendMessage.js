@@ -1,25 +1,20 @@
-import React from "react";
-import { useState, useEffect } from "react";
+import React, { useState } from "react";
 import firebase from "firebase/compat/app";
 // import firestore from "firebase/compat/firestore";
 import { db } from "../firebase.js";
 
-function SendMessage({ name }) {
+function SendMessage({ activeFriend }) {
   const [formValue, setFormValue] = useState("");
   const messagesRef = db.collection("messages");
-  console.log(name);
 
   const sendMessage = async (e) => {
     e.preventDefault();
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      friendName: name,
+      friendName: activeFriend,
     });
-    // console.log(
-    //   "find Laura",
-    //   e.target.attributes.getNamedItem("data-friend").value
-    // );
+
     setFormValue("");
   };
 
@@ -42,18 +37,17 @@ function SendMessage({ name }) {
             </div>
             {/* image button div */}
             <div className="hover:opacity-100 opacity-70">
-              <img src="/image.svg" />
+              <img alt="upload button" src="/image.svg" />
             </div>
             {/* submit button div */}
             <div className=" transform translate-y-[3px] mr-6">
               <button
                 className=" hover:opacity-100 opacity-80"
                 type="submit"
-                data-friend="Laura"
                 onClick={sendMessage}
               >
                 <div className="flex">
-                  <img src="/send.svg" />
+                  <img alt="send button" src="/send.svg" />
                 </div>
               </button>
             </div>
