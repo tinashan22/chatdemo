@@ -42,7 +42,7 @@ function Chat({ name }) {
             ))}
         </div>
       </div>
-      <div className="mb-[50px]" id="dummy"></div>
+      <div className="sm:mb-[50px] mb-[80px]" id="dummy"></div>
     </div>
   );
 }
