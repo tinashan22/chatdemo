@@ -3,7 +3,10 @@ import { useState, useEffect } from "react";
 
 function Message(props) {
   const { text, uid } = props.message;
+  const imgSrc = `/${props.messageName}.jpeg`;
   const [color, setColor] = useState("green");
+
+  console.log(imgSrc);
 
   let darkBgClass = `bg-${color}-600`;
   let lightBgClass = `bg-${color}-100`;
@@ -49,12 +52,12 @@ function Message(props) {
         </div>
       </div>
       {/* receiver messages */}
-      <div className="ml-4 sm:ml-8 right-0 flex items-center mb-6">
+      <div className="  ml-4 sm:ml-8 right-0 flex items-center mb-6">
         <div className="mr-4">
           <img
             className="rounded-[50%]"
             style={{ height: "40px", width: "40px" }}
-            src="/Laura.jpeg"
+            src={imgSrc}
             alt="model with pink hair"
           />
         </div>

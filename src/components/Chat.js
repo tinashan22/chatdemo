@@ -2,17 +2,21 @@ import React from "react";
 import { useState, useEffect } from "react";
 import firebase from "firebase/compat/app";
 import firestore from "firebase/compat/firestore";
+import { collection, query, where } from "firebase/firestore";
 import { db } from "../firebase.js";
 import { useCollectionData } from "react-firebase-hooks/firestore";
 import Message from "./Message.js";
-import SendMessage from "./SendMessage.js";
 
 // const firestore = firebase.firestore();
 
-function Chat() {
+function Chat({ name }) {
   const messagesRef = db.collection("messages");
-  const query = messagesRef.orderBy("createdAt").limit(100);
-  const [messages] = useCollectionData(query, { idField: "id" });
+
+  const q = messagesRef.where("friendName", "==", name);
+
+  const messageQuery = messagesRef.orderBy("createdAt").limit(100);
+  console.log("messages", q);
+  const [messages] = useCollectionData(q, { idField: "id" });
 
   useEffect(() => {
     const dummy = document.getElementById("dummy");
@@ -27,14 +31,15 @@ function Chat() {
             <img src="/back.svg" />
           </div>
           <div className="underline text-zinc-900  decoration-green-500 ml-3 font-sans font-medium text-2xl self-center">
-            {" "}
-            Laura
+            {name}
           </div>
         </div>
 
         <div className="overflow-y-auto pt-[84px]">
           {messages &&
-            messages.map((msg) => <Message key={msg.id} message={msg} />)}
+            messages.map((msg) => (
+              <Message messageName={name} key={msg.id} message={msg} />
+            ))}
         </div>
       </div>
       <div className="mb-[50px]" id="dummy"></div>

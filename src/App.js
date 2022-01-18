@@ -1,6 +1,6 @@
 import "./App.css";
-import Chat from "./components/Chat";
-import SendMessage from "./components/SendMessage";
+import ChatPage from "./ChatPage";
+import FriendListPage from "./FriendListPage";
 
 const css = `
 @media only screen and (min-width: 640px){
@@ -15,14 +15,12 @@ const css = `
 ;`;
 
 function App() {
+  var friendListName = "Laura";
   return (
-    <div className="App relative sm:mt-8 shadow-md sm:overflow-y-auto shadow-green-100 sm:my-8 sm:mx-auto  window sm:max-w-3xl max-w-full rounded-3xl border-2 border-green-700">
-      <style>{css}</style>
+    <div>
+      {/* <FriendListPage /> */}
 
-      <Chat />
-      <div className=" fixed sm:mb-8 sm:left-0 w-full bottom-0">
-        <SendMessage />
-      </div>
+      <ChatPage friendListName={friendListName} />
     </div>
   );
 }

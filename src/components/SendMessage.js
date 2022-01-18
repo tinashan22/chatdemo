@@ -4,18 +4,22 @@ import firebase from "firebase/compat/app";
 // import firestore from "firebase/compat/firestore";
 import { db } from "../firebase.js";
 
-function SendMessage() {
+function SendMessage({ name }) {
   const [formValue, setFormValue] = useState("");
   const messagesRef = db.collection("messages");
+  console.log(name);
 
   const sendMessage = async (e) => {
     e.preventDefault();
     await messagesRef.add({
       text: formValue,
       createdAt: firebase.firestore.FieldValue.serverTimestamp(),
-      friendName: "Laura",
+      friendName: name,
     });
-    console.log("find Laura", e);
+    // console.log(
+    //   "find Laura",
+    //   e.target.attributes.getNamedItem("data-friend").value
+    // );
     setFormValue("");
   };
 
@@ -25,7 +29,6 @@ function SendMessage() {
         <form
           className="bg-green-100 shadow-md shadow-green-100 h-[100px] border-none rounded-xl  focus:border-green-600 focus:ring-green-600"
           onSubmit={sendMessage}
-          data-friend="Laura"
         >
           <div className="flex items-center justify-between">
             {/* input div */}
@@ -34,7 +37,6 @@ function SendMessage() {
                 type="text"
                 className="bg-green-50 px-4 py-4 h-[100px] border-none w-full rounded-xl focus:border-green-600 focus:rounded-xl  focus:ring-green-600"
                 value={formValue}
-                data-friend="Laura"
                 onChange={(e) => setFormValue(e.target.value)}
               />
             </div>
@@ -47,6 +49,7 @@ function SendMessage() {
               <button
                 className=" hover:opacity-100 opacity-80"
                 type="submit"
+                data-friend="Laura"
                 onClick={sendMessage}
               >
                 <div className="flex">
