@@ -14,15 +14,15 @@ const css = `
     }
 ;`;
 
-function ChatPage({ friendListName }) {
-  var friendName = friendListName;
+function ChatPage({ setChatActive, activeFriend }) {
   return (
     <div className="App relative sm:mt-8 shadow-md sm:overflow-y-auto shadow-green-100 sm:my-8 sm:mx-auto  window sm:max-w-3xl max-w-full rounded-3xl border-2 border-green-700">
       <style>{css}</style>
 
-      <Chat name={friendName} />
+      <Chat activeFriend={activeFriend} setChatActive={setChatActive} />
+
       <div className=" fixed sm:mb-8 sm:left-0 w-full bottom-0">
-        <SendMessage name={friendName} />
+        <SendMessage activeFriend={activeFriend} />
       </div>
     </div>
   );

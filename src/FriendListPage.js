@@ -12,7 +12,7 @@ const css = `
     }
 ;`;
 
-function FriendListPage() {
+function FriendListPage({ setActiveFriend }) {
   return (
     <div>
       <div className="shadow-md sm:min-h-min min-h-screen shadow-green-100 sm:my-8 sm:mx-auto window sm:max-w-3xl max-w-full rounded-3xl border border-green-700">
@@ -26,7 +26,12 @@ function FriendListPage() {
 
         <div className="flex-col transform translate-y-[-2px] ">
           {/* friend: Laura */}
-          <div className="flex items-center pl-6 py-4 bg-green-50 border-b border-green-600">
+          <div
+            onClick={() => {
+              setActiveFriend("Laura");
+            }}
+            className="flex items-center pl-6 py-4 bg-green-50 border-b border-green-600"
+          >
             <div>
               <img
                 className="rounded-[50%]"
@@ -35,22 +40,38 @@ function FriendListPage() {
                 alt="Laura"
               />
             </div>
-            <div className="text-black font-sans text-md ml-4"> Laura</div>
+            <div className="text-black font-medium font-sans text-md ml-4">
+              {" "}
+              Laura
+            </div>
           </div>
-          {/* friend: Meghan */}
-          <div className="flex items-center pl-6 py-4 bg-green-50 border-b border-green-600">
+          {/* friend: Meg */}
+          <div
+            onClick={() => {
+              setActiveFriend("Meg");
+            }}
+            className="flex items-center pl-6 py-4 bg-green-50 border-b border-green-600"
+          >
             <div>
               <img
                 className="rounded-[50%]"
                 style={{ height: "40px", width: "40px" }}
                 src="/Meg.jpeg"
-                alt="Meghan"
+                alt="Meg"
               />
             </div>
-            <div className="text-black font-sans text-md ml-4"> Meghan</div>
+            <div className="text-black font-medium  font-sans text-md ml-4">
+              {" "}
+              Meg
+            </div>
           </div>
           {/* friend: Tintin */}
-          <div className="flex items-center pl-6 py-4 bg-green-50 border-b border-green-600">
+          <div
+            onClick={() => {
+              setActiveFriend("Tintin");
+            }}
+            className="flex items-center pl-6 py-4 bg-green-50 border-b border-green-600"
+          >
             <div>
               <img
                 className="rounded-[50%]"
@@ -59,7 +80,10 @@ function FriendListPage() {
                 alt="Tintin"
               />
             </div>
-            <div className="text-black font-sans text-md ml-4"> Tintin</div>
+            <div className="text-black font-medium font-sans text-md ml-4">
+              {" "}
+              Tintin
+            </div>
           </div>
         </div>
       </div>
