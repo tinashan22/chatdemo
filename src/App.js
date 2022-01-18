@@ -1,22 +1,26 @@
 import "./App.css";
-import Chat from "./components/Chat";
-import SendMessage from "./components/SendMessage";
+import ChatPage from "./ChatPage";
+import FriendListPage from "./FriendListPage";
 
 const css = `
-.window{
-  height: calc(100vh - 4rem);
-  
-}`;
+@media only screen and (min-width: 640px){
+  .window{
+  height: calc(100vh - 112px);
+  }
+};
+
+  .window{
+    height:100vh;
+    }
+;`;
 
 function App() {
+  var friendListName = "Laura";
   return (
-    <div className="App sm:my-8 sm:mx-auto overflow-y-auto window max-w-3xl  rounded-3xl border border-green-700">
-      <style>{css}</style>
+    <div>
+      {/* <FriendListPage /> */}
 
-      <Chat />
-      <div className="border-2 absolute bottom-0">
-        <SendMessage />
-      </div>
+      <ChatPage friendListName={friendListName} />
     </div>
   );
 }
