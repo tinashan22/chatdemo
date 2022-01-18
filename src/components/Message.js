@@ -43,7 +43,7 @@ function Message(props) {
           </div>
           <div>
             <img
-              className="rounded-[50%]"
+              className="rounded-[50%] min-w-[40px]"
               style={{ height: "40px", width: "40px" }}
               src="/lil-miquela.jpeg"
               alt="lil miquela"
@@ -55,7 +55,7 @@ function Message(props) {
       <div className="  ml-4 sm:ml-8 right-0 flex items-center mb-6">
         <div className="mr-4">
           <img
-            className="rounded-[50%]"
+            className="rounded-[50%] min-w-[40px]"
             style={{ height: "40px", width: "40px" }}
             src={imgSrc}
             alt="model with pink hair"
