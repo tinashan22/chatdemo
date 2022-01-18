@@ -1,70 +1,71 @@
-# Getting Started with Create React App
+## Overview
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project was created with React, Tailwind CSS and Firebase. 
 
-## Available Scripts
+下载后请输入:
 
-In the project directory, you can run:
+### `npm i npm start`
 
-### `npm start`
+然后打开浏览器 [http://localhost:3000](http://localhost:3000) 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## 已实现功能
 
-### `npm test`
+实现了即时接收体验者发送的消息的简单聊天功能。
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+除了基本回复功能，我添加了好友列表和点赞好友信息功能。
 
-### `npm run build`
+另外为了优化用户体验，增加了自动下拉到最新信息的功能。但是由于Firebase的限制，无法叠加 `where`和`orderBy`(如 `messagesRef.where("friendName", "==", " Laura").orderBy("createdAt")`)，所以在增加好友列表和分离出各用户对话后，聊天记录默认根据 `uid` 排序，此功能不再稳定呈现，但如果多次尝试发送信息，偶能体验此功能。
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+（具体见 https://firebase.google.com/docs/firestore/query-data/order-limit-data 最后一行）
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## 未实现功能
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 1.
+我尝试加入更换聊天界面颜色功能，但由于使用的tailwindcss最新版本不稳定，未能呈现，以下是功能思路：
 
-### `npm run eject`
+在 `ChatPage.js` 输入以下：
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+`const [color, setColor] = useState("green");`
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+`const tailwindColors = [
+    "red",
+    "orange",
+    "amber",
+    "yellow",
+    "lime",
+    "emerald",
+    "sky",
+    "blue",
+    "indigo",
+    "violet",
+    "purple",
+    "fuchsia",
+    "rose",
+  ];`
+  
+  `let colorNumber = Math.floor(Math.random() * tailwindColors.length);`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+然后在页面上增加一个按键并绑定事件：
+  `const handleColorChange = () => {
+    setColor(tailwindColors[colorNumber]);
+  };`
+  
+  将 `{color}` 作为props传入各child 及 grandchild components, 如 `Chat.js，SendMessage.js`和`Message.js` 并在相应的 `className` 内加入如下variable:
+  
+    let darkBgClass = `bg-${color}-600`;
+    let lightBgClass = `bg-${color}-100`;
+    let darkBorderClass = `border-${color}-600`;
+    className= {`$(darkBgClass}`}
+   
+ 
+ 这样做的结果是可以在html里获得正确的Tailwind class, 如 [bg-green-600](https://tailwindcss.com/docs/background-color)，但无法获得应有的style sheet effect.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 2.
+未实现图片上传功能，仅有按钮样式。
 
-## Learn More
+ 
+`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
